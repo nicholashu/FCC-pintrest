@@ -2,6 +2,8 @@
 
 var path = process.cwd();
 var ClickHandler = require(path + '/app/controllers/clickHandler.server.js');
+var UserHandler = require(path + '/app/controllers/userHandler.server.js');
+
 
 module.exports = function (app, passport) {
 
@@ -14,16 +16,23 @@ module.exports = function (app, passport) {
 	}
 
 	var clickHandler = new ClickHandler();
+	var userHandler = new UserHandler();
+
 
 	app.route('/')
 		.get(isLoggedIn, function (req, res) {
 			res.sendFile(path + '/public/index.html');
 		});
 
-	app.route('/login')
-		.get(function (req, res) {
+		app.route('/login')
+			.get(function (req, res) {
 			res.sendFile(path + '/public/login.html');
-		});
+			});
+
+			app.route('/signup')
+			.get(function (req, res) {
+			res.sendFile(path + '/public/signup.html', { message: req.flash('signupMessage') });
+			});
 
 	app.route('/logout')
 		.get(function (req, res) {
@@ -66,18 +75,24 @@ module.exports = function (app, passport) {
 		    res.redirect('/');
 		  });
 
-		app.post('/signup', passport.authenticate('local-signup', {
-		successRedirect : '/', // redirect to the secure profile section
-		failureRedirect : '/signup', // redirect back to the signup page if there is an error
-		failureFlash : true // allow flash messages
-		}));
 
-		app.post('/login',
-		passport.authenticate('local-login'),
-		function(req, res) {
-		res.redirect('/' + req.user);
-		});
+		app.post('/login', passport.authenticate('local-login', {
+			successRedirect : '/', // redirect to the secure profile section
+			failureRedirect : '/login', // redirect back to the signup page if there is an error
+			failureFlash : true // allow flash messages
+			}));
 
+			app.post('/login',
+			passport.authenticate('local-login'),
+			function(req, res) {
+			res.redirect('/' + req.user);
+			});
+
+			app.post('/signup', passport.authenticate('local-signup', {
+			successRedirect : '/', // redirect to the secure profile section
+			failureRedirect : '/signup', // redirect back to the signup page if there is an error
+			failureFlash : true // allow flash messages
+			}));
 
 
 };
