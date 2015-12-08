@@ -31,6 +31,11 @@ module.exports = function (app, passport) {
 			res.redirect('/login');
 		});
 
+	app.route('/signup')
+	.get(function (req, res) {
+	res.sendFile(path + '/public/signup.html', { message: req.flash('signupMessage') });
+	});
+
 	app.route('/profile')
 		.get(isLoggedIn, function (req, res) {
 			res.sendFile(path + '/public/profile.html');
