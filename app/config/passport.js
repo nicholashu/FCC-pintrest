@@ -2,6 +2,7 @@
 
 var GitHubStrategy = require('passport-github').Strategy;
 var TwitterStrategy = require('passport-twitter').Strategy;
+var LocalStrategy = require('passport-local').Strategy;
 var User = require('../models/users');
 var configAuth = require('./auth');
 
