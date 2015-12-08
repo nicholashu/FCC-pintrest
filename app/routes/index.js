@@ -50,8 +50,16 @@ module.exports = function (app, passport) {
 			failureRedirect: '/login'
 		}));
 
-	app.route('/api/:id/clicks')
-		.get(isLoggedIn, clickHandler.getClicks)
-		.post(isLoggedIn, clickHandler.addClick)
-		.delete(isLoggedIn, clickHandler.resetClicks);
+
+		app.get('/auth/twitter',
+		  passport.authenticate('twitter'));
+
+		app.get('/auth/twitter/callback',
+		  passport.authenticate('twitter', { failureRedirect: '/login' }),
+		  function(req, res) {
+		    // Successful authentication, redirect home.
+		    res.redirect('/');
+		  });
+
+
 };
