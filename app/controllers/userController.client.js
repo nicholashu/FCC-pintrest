@@ -2,7 +2,7 @@
 
 (function() {
     angular
-        .module('clementineRecordApp', [])
+        .module('clementinePintrestApp', [])
         .service('UserService', ['$http', '$window', '$q', function($http, $window, $q) {
 
         var appUrl = $window.location.origin;
@@ -20,29 +20,33 @@
 
 
     }])
-        .controller('UserCtrl', ['$scope', '$http', '$window','UserService','$location',
+        .controller('userCtrl', ['$scope', '$http', '$window','UserService','$location',
 
             function($scope, $http, $window, UserService, $location) {
-                
+
                 $scope.user = {};
                 $scope.tab = 0;
                 var appUrl = $window.location.origin;
               //  var userUrl = appUrl + '/api/profile/:id';
-  
+
 
                 $scope.getUser = function() {
                 UserService.getUser().then(function(result) {
-                        $scope.user = result.data;
+                  if (result === undefined){
+                    console.log("not logged in")
+                  }else{
+                    $scope.user = result.data};
                     });
                 };
 
-                $scope.getUser();
+              $scope.getUser()
 
                 $scope.stupidButton = function(){
                 	$http.get("/hi").then(function(){
                 		console.log("done");
                 	})
                 };
+
 
                 $scope.editUser = function(id) {
                     $http.put( '/api/profile/', {

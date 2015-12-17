@@ -1,7 +1,7 @@
 'use strict';
 
 var path = process.cwd();
-var ClickHandler = require(path + '/app/controllers/clickHandler.server.js');
+var PinHandler = require(path + '/app/controllers/pinHandler.server.js');
 var UserHandler = require(path + '/app/controllers/userHandler.server.js');
 
 
@@ -15,12 +15,12 @@ module.exports = function (app, passport) {
 		}
 	}
 
-	var clickHandler = new ClickHandler();
+	var pinHandler = new pinHandler();
 	var userHandler = new UserHandler();
 
 
 	app.route('/')
-		.get(isLoggedIn, function (req, res) {
+		.get(function (req, res) {
 			res.sendFile(path + '/public/index.html');
 		});
 

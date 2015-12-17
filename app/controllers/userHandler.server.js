@@ -2,7 +2,7 @@
 
 
 
-var Users = require('../models/user.js');
+var Users = require('../models/users.js');
 var flatten = require('flat')
 
 
