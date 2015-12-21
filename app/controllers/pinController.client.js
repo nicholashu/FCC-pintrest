@@ -33,6 +33,7 @@
 
                 $scope.getUser = function() {
                 UserService.getUser().then(function(result) {
+                  console.log(result.data)
                         $scope.user = result.data;
                     });
                 };
@@ -43,19 +44,18 @@
                     $scope.pins = [];
                     $http.get(pinUrl).then(function(response) {
                         var pins = response.data;
-                        $scope.pins.push(pins);
-                        console.log($scope.pins)
+                        $scope.pins = pins;
                     });
                 };
 
                 loadPins();
 
                 $scope.addPin = function() {
-                  console.log("working");
                     if ($scope.newRecord != {}) {
                         $http.post(pinUrl, {
                             'url': $scope.newPin.url,
-                            'caption': $scope.newPin.caption
+                            'caption': $scope.newPin.caption,
+                            "owner": $scope.user._id
                         }).then(function(response) {
                             loadPins();
                             $scope.newPin = {};

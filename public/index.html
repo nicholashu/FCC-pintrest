@@ -1,21 +1,20 @@
 <!DOCTYPE html>
 <html ng-app="clementinePinApp">
 
-	<head>
-		<title>Pintrest Clone</title>
-	</head>
-</body ng-controller="PinCtrl">
+<head>
+	<title>Pintrest Clone</title>
+</head>
 <div ng-include="'public/partials/navbar.html'"></div>
-{{pins}}
-<div class="grid js-masonry"
-  data-masonry-options='{ "itemSelector": ".grid-item", "columnWidth": 200 }'>
-  <div ng-repeat="pin in pins" class="grid-item grid-item--width2">
+<body ng-controller="PinCtrl">
+	{{user}}
+
+<div class="grid js-masonry" data-masonry-options='{ "itemSelector": ".grid-item", "columnWidth": 200 }'>
+  <div ng-repeat="pin in pins" class="grid-item">
 		<img src="{{pin.url}}"/>
 		<p>{{pin.caption}}</p>
 	</div>
 </div>
 
-</div>
 		<link href="/public/css/main.css" rel="stylesheet" type="text/css">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>

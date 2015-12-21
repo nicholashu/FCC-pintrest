@@ -24,7 +24,8 @@ function PinHandler() {
     this.addPinNew = function(req, res) {
         var newDoc = new Pins({
               caption: req.body.caption,
-              url: req.body.url
+              url: req.body.url,
+              owner: req.body.owner
         });
 
         newDoc.save(function(err, doc) {

@@ -6,6 +6,7 @@ var Schema = mongoose.Schema;
 var Pin = new Schema({
     caption : String,
     url : String,
+    owner: String
 });
 
 
