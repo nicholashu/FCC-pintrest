@@ -1,7 +1,7 @@
 'use strict';
 
 
-var Records = require('../models/pins.js');
+var Pins = require('../models/pins.js');
 
 
 
@@ -26,7 +26,6 @@ function PinHandler() {
               caption: req.body.caption,
               url: req.body.url
         });
-
 
         newDoc.save(function(err, doc) {
             if (err) {

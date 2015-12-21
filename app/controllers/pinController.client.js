@@ -20,12 +20,14 @@
 
 
     }])
-        .controller('PinCtrl', ['$scope', '$http', '$window','UserService','$location',
+  .controller('PinCtrl', ['$scope', '$http', '$window','UserService','$location',
 
-            function($scope, $http, $window, UserService, $location) {
+  function($scope, $http, $window, UserService, $location) {
 
                 var appUrl = $window.location.origin;
-                var recordUrl = appUrl + '/api/:id/record';
+                var pinUrl = appUrl + '/api/:id/pins';
+                $scope.newPin = {};
+                $scope.pins = [];
                 $scope.tab = 0;
 
 
@@ -37,55 +39,39 @@
 
                 $scope.getUser();
 
-                function loadRecords() {
-                    $scope.records = [];
-                    $scope.awaitingArray = [];
-                    $scope.onLoan = [];
-                    $http.get(recordUrl).then(function(response) {
-                        var records = response.data;
-                        getRecords(records);
+                function loadPins() {
+                    $scope.pins = [];
+                    $http.get(pinUrl).then(function(response) {
+                        var pins = response.data;
+                        $scope.pins.push(pins);
+                        console.log($scope.pins)
                     });
                 };
 
-                function getRecords(records){
-                  records.forEach(function(record){
-                    if (record.owner === $scope.user._id ){
-                      $scope.myRecords.push(record);
-                    }
-                      $scope.records.push(record);
-                  });
-                 }
+                loadPins();
 
-
-                loadRecords();
-
-
-                $scope.addRecord = function() {
+                $scope.addPin = function() {
+                  console.log("working");
                     if ($scope.newRecord != {}) {
-                        $http.post(recordUrl, {
-                            'album': $scope.newRecord.album,
-                            'artist': $scope.newRecord.artist,
-                            'condition': $scope.newRecord.condition,
-                            'description': $scope.newRecord.description,
-                            'owner': $scope.user._id,
-                            'loaner': ""
-
+                        $http.post(pinUrl, {
+                            'url': $scope.newPin.url,
+                            'caption': $scope.newPin.caption
                         }).then(function(response) {
-                            loadRecords();
-                            $scope.newRecord = {};
-                            $window.location.href = appUrl + "/" +  $scope.user._id + '/records';
+                            loadPins();
+                            $scope.newPin = {};
+                            $window.location.href = appUrl + "/" +  $scope.user._id + '/';
                         });
-                    }
+                    };
                 };
 
 
-                $scope.deleteRecord = function(id) {
-                    $http({
+                $scope.deletePin = function(id) {
+                  $http({
                         url: recordUrl + "/" + id,
                         method: "DELETE"
                     }).
                     then(function(data) {
-                        loadRecords();
+                        loadPins();
                     });
                 };
 
@@ -97,7 +83,7 @@
                 $scope.isTab = function(tab) {
                   return tab === $scope.tab;
                 };
+              }
+          ]);
 
-
-
-})();
+  })();

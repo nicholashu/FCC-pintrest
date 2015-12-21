@@ -20,7 +20,7 @@
 
 
     }])
-        .controller('userCtrl', ['$scope', '$http', '$window','UserService','$location',
+        .controller('UserCtrl', ['$scope', '$http', '$window','UserService','$location',
 
             function($scope, $http, $window, UserService, $location) {
 

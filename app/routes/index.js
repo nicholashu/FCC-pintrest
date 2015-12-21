@@ -15,7 +15,7 @@ module.exports = function (app, passport) {
 		}
 	}
 
-	var pinHandler = new pinHandler();
+	var pinHandler = new PinHandler();
 	var userHandler = new UserHandler();
 
 
@@ -28,6 +28,11 @@ module.exports = function (app, passport) {
 			.get(function (req, res) {
 			res.sendFile(path + '/public/login.html');
 			});
+
+			app.route('/newpin')
+				.get(function (req, res) {
+					res.sendFile(path + '/public/newpin.html');
+				});
 
 			app.route('/signup')
 			.get(function (req, res) {
@@ -94,5 +99,9 @@ module.exports = function (app, passport) {
 			failureFlash : true // allow flash messages
 			}));
 
+		app.route('/api/:id/pins')
+		.get(pinHandler.getPinArray)
+		.post(pinHandler.addPinNew)
+		.put(pinHandler.editPin);
 
 };
