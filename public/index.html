@@ -6,7 +6,6 @@
 </head>
 <div ng-include="'public/partials/navbar.html'"></div>
 <body ng-controller="PinCtrl">
-	{{user}}
 
 <div class="grid js-masonry" data-masonry-options='{ "itemSelector": ".grid-item", "columnWidth": 200 }'>
   <div ng-repeat="pin in pins" class="grid-item">
