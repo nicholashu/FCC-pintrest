@@ -3,24 +3,38 @@
 
 <head>
 	<title>Pintrest Clone</title>
+
 </head>
 <div ng-include="'public/partials/navbar.html'"></div>
 <body ng-controller="PinCtrl">
-
-<div class="grid js-masonry" data-masonry-options='{ "itemSelector": ".grid-item", "columnWidth": 200 }'>
-  <div ng-repeat="pin in pins" class="grid-item">
+<div class="container">
+<div class="grid">
+  <div ng-repeat="pin in pins" class="item">
 		<img src="{{pin.url}}"/>
 		<p>{{pin.caption}}</p>
 	</div>
 </div>
+</div>
+<link href="/public/css/main.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
+<script type="text/javascript" src="https://code.angularjs.org/1.4.7/angular-resource.min.js"></script>
+<script type="text/javascript" src="controllers/pinController.client.js"></script>
+<script type="text/javascript" src="controllers/userController.client.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/3.2.0/imagesloaded.pkgd.min.js"></script>
+<script src="public/masonry.min.js"></script>
+<script>
+var $container = $('.grid');
+$container.imagesLoaded(function(){
+  $container.masonry({
+    itemSelector : '.item',
+    columnWidth : 240
+  });
+});
+</script>
 
-		<link href="/public/css/main.css" rel="stylesheet" type="text/css">
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
-		 <script type="text/javascript" src="https://code.angularjs.org/1.4.7/angular-resource.min.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/3.3.2/masonry.pkgd.min.js"></script>
-		<script type="text/javascript" src="controllers/pinController.client.js"></script>
-		<script type="text/javascript" src="controllers/userController.client.js"></script>
+
 	</body>
 
 </html>

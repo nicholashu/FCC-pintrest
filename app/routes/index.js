@@ -30,7 +30,7 @@ module.exports = function (app, passport) {
 			});
 
 			app.route('/newpin')
-				.get(function (req, res) {
+				.get(isLoggedIn,function (req, res) {
 					res.sendFile(path + '/public/newpin.html');
 				});
 

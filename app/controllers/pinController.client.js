@@ -38,7 +38,6 @@
                     });
                 };
 
-                $scope.getUser();
 
                 function loadPins() {
                     $scope.pins = [];
@@ -75,6 +74,11 @@
                     });
                 };
 
+                $scope.hasUrl = function () {
+                  if (newPin.url){
+                    return true;
+                  }
+                }
 
                 $scope.setTab = function(tab) {
                   $scope.tab = tab;

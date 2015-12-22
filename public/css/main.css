@@ -15,8 +15,11 @@
 }
 
 /*****MASONRY******/
-.grid-item { width: 200px; }
+
 .grid-item--width2 { width: 400px; }
+.item img {
+  max-width: 200px;
+}
 
 
 /****** Main Styling ******/
@@ -44,6 +47,20 @@ p {
 	padding: 0;
 }
 
+.pincontainer {
+  width:500px;
+  margin: 0 auto;
+}
+
+.pincontainer img {
+  width: 100%;
+  display: inline;
+}
+
+.imgpreview {
+  width: 300px;
+  min-height:200px;
+}
 /****** Header Styling ******/
 
 header p {
