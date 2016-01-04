@@ -12,18 +12,17 @@
       </button>
       <a href="/" class="navbar-brand">Pintrest Clone</a>
     </div>
-    <div collapse="isCollapsed" class="navbar-collapse collapse" id="navbar-main">
+    <div class="navbar-collapse collapse" id="navbar-main">
       <ul class="nav navbar-nav">
-        <li ng-repeat="item in menu" ng-class="{active: isActive(item.link)}">
-            <a ng-href="{{item.link}}">{{item.title}}</a>
-        </li>
-        <!-- <li ><a href="/">Item</a></li> -->
+
       </ul>
-{{}}
+
       <ul class="nav navbar-nav navbar-right">
-        <li ><a href="/newpin">New Pin</a></li>
-        <li ><a href="/mypins">My Pins</a></li>
-        <li><a href="/logout" ng-click="logout()">Logout</a></li>
+        <li ng-hide="isLoggedIn()"><a href="/signup">Signup</a></li>
+        <li ng-hide="isLoggedIn()"><a href="/login">Login</a></li>
+        <li ng-show="isLoggedIn()"><a href="/newpin">New Pin</a></li>
+        <li ng-show="isLoggedIn()"><a href="{{user._id}}/pins">My Pins</a></li>
+        <li ng-show="isLoggedIn()"><a href="/logout" ng-click="logout()">Logout</a></li>
       </ul>
     </div>
   </div>

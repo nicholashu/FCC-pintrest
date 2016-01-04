@@ -27,6 +27,7 @@
                 var appUrl = $window.location.origin;
                 var pinUrl = appUrl + '/api/:id/pins';
                 $scope.newPin = {};
+                $scope.myPins = [];
                 $scope.pins = [];
                 $scope.tab = 0;
 
@@ -37,17 +38,28 @@
                     });
                 };
 
+                function sortMyPins(pins){
+
+                  for (var x=0; x < pins.length; x++){
+                    if(pins[x].owner === $scope.user._id){
+                      $scope.myPins.push(pins[x]);
+                    };
+                  }
+                  console.log($scope.myPins)
+                }
 
                 function loadPins() {
                     $scope.pins = [];
                     $http.get(pinUrl).then(function(response) {
                         var pins = response.data;
                         $scope.pins = pins;
+                        sortMyPins(pins);
                     });
                 };
 
-                loadPins();
                 getUser();
+                loadPins();
+
 
                 $scope.addPin = function() {
                   console.log($scope.user)
@@ -59,7 +71,7 @@
                         }).then(function(response) {
                             loadPins();
                             $scope.newPin = {};
-                          //  $window.location.href = appUrl + "/" +  $scope.user._id + '/';
+                          $window.location.href = appUrl + "/" +  $scope.user._id + '/pins';
                         });
                     };
                 };
@@ -79,7 +91,15 @@
                   if (newPin.url){
                     return true;
                   }
-                }
+                };
+
+                $scope.isLoggedIn = function (){
+                  if ($scope.user._id === undefined){
+                    return false;
+                  }else{
+                    return true;
+                  }
+                };
 
                 $scope.setTab = function(tab) {
                   $scope.tab = tab;

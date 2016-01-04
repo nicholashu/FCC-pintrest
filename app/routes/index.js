@@ -29,12 +29,12 @@ module.exports = function (app, passport) {
 			res.sendFile(path + '/public/login.html');
 			});
 
-			app.route('/newpin')
+		app.route('/newpin')
 				.get(isLoggedIn,function (req, res) {
 					res.sendFile(path + '/public/newpin.html');
 				});
 
-			app.route('/signup')
+		app.route('/signup')
 			.get(function (req, res) {
 			res.sendFile(path + '/public/signup.html', { message: req.flash('signupMessage') });
 			});
@@ -45,15 +45,15 @@ module.exports = function (app, passport) {
 			res.redirect('/login');
 		});
 
-	app.route('/signup')
-	.get(function (req, res) {
-	res.sendFile(path + '/public/signup.html', { message: req.flash('signupMessage') });
-	});
-
 	app.route('/profile')
 		.get(isLoggedIn, function (req, res) {
 			res.sendFile(path + '/public/profile.html');
 		});
+
+		app.route('/:id/pins')
+			.get(isLoggedIn, function (req, res) {
+				res.sendFile(path + '/public/mypins.html');
+			});
 
 	app.route('/api/:id')
 		.get(isLoggedIn, function (req, res) {
