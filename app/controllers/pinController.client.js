@@ -31,9 +31,8 @@
                 $scope.tab = 0;
 
 
-                $scope.getUser = function() {
+                function getUser() {
                 UserService.getUser().then(function(result) {
-                  console.log(result.data)
                         $scope.user = result.data;
                     });
                 };
@@ -48,8 +47,10 @@
                 };
 
                 loadPins();
+                getUser();
 
                 $scope.addPin = function() {
+                  console.log($scope.user)
                     if ($scope.newRecord != {}) {
                         $http.post(pinUrl, {
                             'url': $scope.newPin.url,
@@ -58,7 +59,7 @@
                         }).then(function(response) {
                             loadPins();
                             $scope.newPin = {};
-                            $window.location.href = appUrl + "/" +  $scope.user._id + '/';
+                          //  $window.location.href = appUrl + "/" +  $scope.user._id + '/';
                         });
                     };
                 };
