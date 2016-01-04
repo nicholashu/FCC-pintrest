@@ -79,11 +79,11 @@
 
                 $scope.deletePin = function(id) {
                   $http({
-                        url: recordUrl + "/" + id,
+                        url: "/api/pins/" + id,
                         method: "DELETE"
                     }).
                     then(function(data) {
-                        loadPins();
+                      $window.location.href = appUrl + "/" +  $scope.user._id + '/pins';
                     });
                 };
 

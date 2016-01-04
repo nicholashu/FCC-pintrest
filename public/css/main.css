@@ -21,6 +21,25 @@
   max-width: 200px;
 }
 
+.delete {
+  width:30px;
+  height:30px;
+  border-radius: 50%;
+  background-color: #D64541;
+  color: white;
+  text-align: center;
+  position: absolute;
+  top: -15px;
+  right:-15px;
+}
+
+.delete :hover {
+  background-color: #CF000F;
+  border-radius: 50%;
+}
+.delete p {
+ font-size: 22px;
+}
 
 /****** Main Styling ******/
 

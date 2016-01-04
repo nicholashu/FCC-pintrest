@@ -104,4 +104,7 @@ module.exports = function (app, passport) {
 		.post(pinHandler.addPinNew)
 		.put(pinHandler.editPin);
 
+		app.route('/api/pins/:id')
+		.delete(pinHandler.removePin);
+
 };
