@@ -12,11 +12,12 @@
   <div ng-repeat="pin in pins" class="item">
 		<img src="{{pin.url}}"/>
 		<p>{{pin.caption}}</p>
+		<a ng-click="getPublicPins(pin.owner)">View User</a>
 	</div>
 </div>
 </div>
-<link href="/public/css/main.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<link href="/public/css/main.css" rel="stylesheet" type="text/css">
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
 <script type="text/javascript" src="https://code.angularjs.org/1.4.7/angular-resource.min.js"></script>
 <script type="text/javascript" src="controllers/pinController.client.js"></script>

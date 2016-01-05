@@ -55,6 +55,12 @@ module.exports = function (app, passport) {
 				res.sendFile(path + '/public/mypins.html');
 			});
 
+		app.route('/pins/:id/public/')
+				.get(isLoggedIn, function (req, res) {
+					res.sendFile(path + '/public/publicprofile.html');
+			});
+
+
 	app.route('/api/:id')
 		.get(isLoggedIn, function (req, res) {
 			res.json(req.user);
@@ -103,6 +109,9 @@ module.exports = function (app, passport) {
 		.get(pinHandler.getPinArray)
 		.post(pinHandler.addPinNew)
 		.put(pinHandler.editPin);
+
+		app.route('/api/public/pins/:id')
+		.get(pinHandler.getUserPinArray);
 
 		app.route('/api/pins/:id')
 		.delete(pinHandler.removePin);

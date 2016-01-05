@@ -41,6 +41,12 @@
  font-size: 22px;
 }
 
+.newpinbtn {
+  position: absolute;
+  bottom:-110px;
+  right:-8px;
+}
+
 /****** Main Styling ******/
 
 body {
@@ -48,6 +54,7 @@ body {
 	font-size: 16px;
 	margin: 0;
 	padding: 0;
+  background-color: #EEEEEE;
 }
 
 header {

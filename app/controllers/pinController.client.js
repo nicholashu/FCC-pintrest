@@ -28,6 +28,7 @@
                 var pinUrl = appUrl + '/api/:id/pins';
                 $scope.newPin = {};
                 $scope.myPins = [];
+                $scope.publicUserPins = [];
                 $scope.pins = [];
                 $scope.tab = 0;
 
@@ -39,13 +40,11 @@
                 };
 
                 function sortMyPins(pins){
-
                   for (var x=0; x < pins.length; x++){
                     if(pins[x].owner === $scope.user._id){
                       $scope.myPins.push(pins[x]);
                     };
                   }
-                  console.log($scope.myPins)
                 }
 
                 function loadPins() {
@@ -62,7 +61,6 @@
 
 
                 $scope.addPin = function() {
-                  console.log($scope.user)
                     if ($scope.newRecord != {}) {
                         $http.post(pinUrl, {
                             'url': $scope.newPin.url,
@@ -84,6 +82,19 @@
                     }).
                     then(function(data) {
                       $window.location.href = appUrl + "/" +  $scope.user._id + '/pins';
+                    });
+                };
+
+
+                $scope.getPublicPins = function(user){
+                  $http({
+                        url: "/api/public/pins/" + user,
+                        method: "get"
+                    })
+                    .then(function(response) {
+                        var userPins = response.data;
+                        $scope.publicUserPins = userPins;
+                        $window.location.href = appUrl + "/pins/" + user +"/public/" ;
                     });
                 };
 

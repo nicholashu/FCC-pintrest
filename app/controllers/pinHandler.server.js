@@ -21,6 +21,18 @@ function PinHandler() {
             });
     };
 
+    this.getUserPinArray = function(req, res) {
+      console.log(req.params)
+        Pins.findOne({
+          owner: req.params.id
+        })
+            .exec(function(err, result) {
+                if (err) throw err;
+                console.log(result);
+                res.send(result);
+            });
+    };
+
     this.addPinNew = function(req, res) {
         var newDoc = new Pins({
               caption: req.body.caption,
