@@ -55,8 +55,8 @@ module.exports = function (app, passport) {
 				res.sendFile(path + '/public/mypins.html');
 			});
 
-		app.route('/pins/:id/public/')
-				.get(isLoggedIn, function (req, res) {
+		app.route('/pins/public/:id')
+				.get(function (req, res) {
 					res.sendFile(path + '/public/publicprofile.html');
 			});
 

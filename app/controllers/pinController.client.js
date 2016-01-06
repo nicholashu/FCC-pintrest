@@ -87,14 +87,17 @@
 
 
                 $scope.getPublicPins = function(user){
+                  $scope.publicUserPins = [];
                   $http({
                         url: "/api/public/pins/" + user,
                         method: "get"
                     })
                     .then(function(response) {
                         var userPins = response.data;
-                        $scope.publicUserPins = userPins;
-                        $window.location.href = appUrl + "/pins/" + user +"/public/" ;
+                        console.log(userPins)
+                        $scope.publicUserPins.push(userPins);
+                        console.log($scope.publicUserPins)
+                        $location.path("/pins/public/" + user);
                     });
                 };
 

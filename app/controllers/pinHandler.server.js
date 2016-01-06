@@ -20,7 +20,7 @@ function PinHandler() {
 
             });
     };
-
+    //change findone to findAll
     this.getUserPinArray = function(req, res) {
       console.log(req.params)
         Pins.findOne({
@@ -28,7 +28,6 @@ function PinHandler() {
         })
             .exec(function(err, result) {
                 if (err) throw err;
-                console.log(result);
                 res.send(result);
             });
     };
@@ -51,7 +50,7 @@ function PinHandler() {
 
     };
 
-
+    //add is owner flag..
     this.removePin = function(req, res) {
         Pins.findOneAndRemove({
             "_id": req.params.id

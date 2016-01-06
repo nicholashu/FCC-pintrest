@@ -12,7 +12,7 @@
   <div ng-repeat="pin in pins" class="item">
 		<img src="{{pin.url}}"/>
 		<p>{{pin.caption}}</p>
-		<a ng-click="getPublicPins(pin.owner)">View User</a>
+		<a href="/" ng-click="getPublicPins(pin.owner)">View User</a>
 	</div>
 </div>
 </div>
