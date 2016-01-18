@@ -20,10 +20,9 @@ function PinHandler() {
 
             });
     };
-    //change findone to findAll
     this.getUserPinArray = function(req, res) {
       console.log(req.params)
-        Pins.findOne({
+        Pins.find({
           owner: req.params.id
         })
             .exec(function(err, result) {

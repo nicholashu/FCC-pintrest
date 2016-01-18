@@ -10,6 +10,9 @@ var flash = require('connect-flash');
 var morgan       = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser   = require('body-parser');
+var path = require('path');
+var ejs = require('ejs');
+
 
 
 var app = express();
@@ -25,6 +28,9 @@ app.use(morgan('dev')); // log every request to the console
 app.use(cookieParser()); // read cookies (needed for auth)
 app.use(bodyParser.json()); // get information from html forms
 	app.use(bodyParser.urlencoded({ extended: true }));
+app.set('views', __dirname + '/public/views');
+app.engine('html', require('ejs').renderFile);
+app.set('view engine', 'html');
 app.use('/controllers', express.static(process.cwd() + '/app/controllers'));
 app.use('/public', express.static(process.cwd() + '/public'));
 app.use(flash()); // use connect-flash for flash messages stored in session

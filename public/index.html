@@ -3,39 +3,22 @@
 
 <head>
 	<title>Pintrest Clone</title>
-
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	<link href="/public/css/main.css" rel="stylesheet" type="text/css">
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/3.2.0/imagesloaded.pkgd.min.js"></script>
+	<script src="public/masonry.min.js"></script>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
+	<script src="https://code.angularjs.org/1.4.8/angular-route.min.js"></script>
+	<script type="text/javascript" src="https://code.angularjs.org/1.4.7/angular-resource.min.js"></script>
+	<script src="controllers/PinController.client.js"></script>
+	<script src="controllers/app.js"></script>
 </head>
+
 <div ng-include="'public/partials/navbar.html'"></div>
-<body ng-controller="PinCtrl">
-<div class="container">
-<div class="grid">
-  <div ng-repeat="pin in pins" class="item">
-		<img src="{{pin.url}}"/>
-		<p>{{pin.caption}}</p>
-		<a href="/" ng-click="getPublicPins(pin.owner)">View User</a>
-	</div>
-</div>
-</div>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-<link href="/public/css/main.css" rel="stylesheet" type="text/css">
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
-<script type="text/javascript" src="https://code.angularjs.org/1.4.7/angular-resource.min.js"></script>
-<script type="text/javascript" src="controllers/pinController.client.js"></script>
-<script type="text/javascript" src="controllers/userController.client.js"></script>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/3.2.0/imagesloaded.pkgd.min.js"></script>
-<script src="public/masonry.min.js"></script>
-<script>
-var $container = $('.grid');
-$container.imagesLoaded(function(){
-  $container.masonry({
-    itemSelector : '.item',
-    columnWidth : 240
-  });
-});
-</script>
-
-
-	</body>
-
+<body>
+	<div ng-view></div>
+</body>
 </html>

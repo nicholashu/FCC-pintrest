@@ -1,8 +1,5 @@
 
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
-<script type="text/javascript" src="controllers/userController.client.js"></script>
-<script type="text/javascript" src="https://code.angularjs.org/1.4.7/angular-resource.min.js"></script>
-<div ng-app="clementinePinApp" class="navbar navbar-default navbar-static-top" ng-controller="PinCtrl">
+<div class="navbar navbar-default navbar-static-top">
   <div class="container">
     <div class="navbar-header">
         <span class="sr-only">Toggle navigation</span>
@@ -17,10 +14,10 @@
 
       </ul>
 
-      <ul class="nav navbar-nav navbar-right">
+      <ul class="nav navbar-nav navbar-right" ng-controller="MainCtrl">
         <li ng-hide="isLoggedIn()"><a href="/signup">Signup</a></li>
         <li ng-hide="isLoggedIn()"><a href="/login">Login</a></li>
-        <li ng-show="isLoggedIn()"><a href="/newpin">New Pin</a></li>
+        <li ng-show="isLoggedIn()"><a ng-click="changeLocation('/newpin')">New Pin</a></li>
         <li ng-show="isLoggedIn()"><a href="{{user._id}}/pins">My Pins</a></li>
         <li ng-show="isLoggedIn()"><a href="/logout" ng-click="logout()">Logout</a></li>
       </ul>
