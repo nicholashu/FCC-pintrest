@@ -17,7 +17,7 @@
       <ul class="nav navbar-nav navbar-right" ng-controller="MainCtrl">
         <li ng-hide="isLoggedIn()"><a href="/signup">Signup</a></li>
         <li ng-hide="isLoggedIn()"><a href="/login">Login</a></li>
-        <li ng-show="isLoggedIn()"><a ng-click="changeLocation('/newpin')">New Pin</a></li>
+        <li ng-show="isLoggedIn()"><a ng-click="changeLocation('newpin')">New Pin</a></li>
         <li ng-show="isLoggedIn()"><a href="{{user._id}}/pins">My Pins</a></li>
         <li ng-show="isLoggedIn()"><a href="/logout" ng-click="logout()">Logout</a></li>
       </ul>

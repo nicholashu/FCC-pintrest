@@ -3,7 +3,6 @@
     angular
     .module('PinController', [])
       .controller('PinCtrl', ['$scope', '$http', '$window', '$location',
-
           function($scope, $http, $window, $location) {
 
             var appUrl = $window.location.origin;
