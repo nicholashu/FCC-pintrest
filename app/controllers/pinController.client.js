@@ -1,9 +1,9 @@
 
 (function() {
     angular
-    .module('PinController', [])
-      .controller('PinCtrl', ['$scope', '$http', '$window', '$location',
-          function($scope, $http, $window, $location) {
+    .module('PinController', ['clementinePinApp'])
+      .controller('PinCtrl', ['$scope', '$http', '$window', '$location', 'UserService',
+          function($scope, $http, $window, $location, UserService) {
 
             var appUrl = $window.location.origin;
             var pinUrl = appUrl + '/api/:id/pins';
@@ -13,6 +13,17 @@
             $scope.pins = [];
             $scope.tab = 0;
 
+            $scope.changeLocation = function(url) {
+              $location.path(url);
+            };
+
+            $scope.getUser = function() {
+                    UserService.getUser().then(function(result) {
+                            $scope.user = result.data;
+                        });
+                    };
+
+            $scope.getUser();
 
             function sortMyPins(pins) {
               if ($scope.user === undefined){
@@ -47,7 +58,7 @@
                 }).then(function(response) {
                   loadPins();
                   $scope.newPin = {};
-                  $window.location.href = appUrl + "/" + $scope.user._id + '/pins';
+                  $scope.getPublicPins($scope.user._id);
                 });
               }
             };
@@ -72,8 +83,12 @@
                 })
                 .then(function(response) {
                   var userPins = response.data;
-                  $scope.publicUserPins.push(userPins);
-                  $location.path("/pins/public/" + user);
+                  $scope.$apply(function (){
+                    $scope.publicUserPins = userPins;
+                    console.log($scope.publicUserPins);
+                    $location.path("/pins/public/" + user);
+                  });
+
                 });
             };
 

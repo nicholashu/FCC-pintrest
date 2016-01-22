@@ -13,12 +13,11 @@
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
 	<script src="https://code.angularjs.org/1.4.8/angular-route.min.js"></script>
 	<script type="text/javascript" src="https://code.angularjs.org/1.4.7/angular-resource.min.js"></script>
-	<script src="controllers/PinController.client.js"></script>
 	<script src="controllers/app.js"></script>
+	<script src="controllers/PinController.client.js"></script>
 </head>
-
 <div ng-include="'public/partials/navbar.html'"></div>
-<body>
+<body ng-controller="PinCtrl">
 	<div ng-view></div>
 </body>
 </html>

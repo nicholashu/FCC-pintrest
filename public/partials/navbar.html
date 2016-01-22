@@ -7,7 +7,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a href="/" class="navbar-brand">Pintrest Clone</a>
+      <a ng-click="changeLocation('/')" class="navbar-brand">Pintrest Clone</a>
     </div>
     <div class="navbar-collapse collapse" id="navbar-main">
       <ul class="nav navbar-nav">
@@ -18,7 +18,7 @@
         <li ng-hide="isLoggedIn()"><a href="/signup">Signup</a></li>
         <li ng-hide="isLoggedIn()"><a href="/login">Login</a></li>
         <li ng-show="isLoggedIn()"><a ng-click="changeLocation('newpin')">New Pin</a></li>
-        <li ng-show="isLoggedIn()"><a href="{{user._id}}/pins">My Pins</a></li>
+        <li ng-controller="PinCtrl" ng-show="isLoggedIn()"><a ng-click="getPublicPins(user._id)">My Pins</a></li>
         <li ng-show="isLoggedIn()"><a href="/logout" ng-click="logout()">Logout</a></li>
       </ul>
     </div>
