@@ -1,0 +1,15 @@
+app.route('/newpin')
+  .get(isLoggedIn,function (req, res) {
+  res.sendFile(path + '/public/newpin.html');
+});
+
+
+app.route('/profile')
+  .get(isLoggedIn, function (req, res) {
+    res.render('profile');
+  });
+
+  app.route('/:id/pins')
+    .get(isLoggedIn, function (req, res) {
+      res.render('mypins');
+    });

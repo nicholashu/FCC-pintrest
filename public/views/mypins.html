@@ -1,0 +1,24 @@
+<script>
+	var $container = $('.grid');
+	$container.imagesLoaded(function() {
+		$container.masonry({
+			itemSelector: '.item',
+			columnWidth: 200
+		});
+	});
+</script>
+<div ng-controller="PinCtrl" class="container">
+	In the my pins view
+<div class="grid">
+  <div ng-repeat="pin in publicUserPins" class="item">
+    <img src='{{pin.url}}' />
+    <p>{{pin.caption}}</p>
+		<a href="#">
+			<div class="delete" ng-click="deletePin(pin._id)">
+				<p>X</p>
+			</div>
+		</a>
+    <!-- <a href="/" ng-click="getPublicPins(pin.owner)">View User</a> -->
+  </div>
+</div>
+</div>
