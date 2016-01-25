@@ -2,8 +2,30 @@
 (function() {
     angular
     .module('PinController', ['clementinePinApp'])
-      .controller('PinCtrl', ['$scope', '$http', '$window', '$location', 'UserService',
-          function($scope, $http, $window, $location, UserService) {
+    .service('PinStorage', ['$http', '$location', function($http, $location) {
+            var tempPins = [];
+
+            this.getPublicPins = function(user) {
+              tempPins = [];
+              $http({
+                  url: "/api/public/pins/" + user,
+                  method: "get"
+                })
+                .then(function(response) {
+                 //var userPins = response.data;
+                  tempPins = response.data;
+                  console.log("using Factory");
+                  console.log(tempPins);
+                  $location.path("/pins/public/" + user);
+                });
+            };
+            return function (user) {
+
+            };
+
+        }])
+      .controller('PinCtrl', ['$scope', '$http', '$window', '$location', 'UserService','PinStorage',
+          function($scope, $http, $window, $location, UserService, PinStorage) {
 
             var appUrl = $window.location.origin;
             var pinUrl = appUrl + '/api/:id/pins';
@@ -12,6 +34,8 @@
             $scope.publicUserPins = [];
             $scope.pins = [];
             $scope.tab = 0;
+            $scope.PinStorage = PinStorage;
+              //$scope.getPublicPins = PinStorage.getPublicPins;
 
             $scope.changeLocation = function(url) {
               $location.path(url);
@@ -82,13 +106,9 @@
                   method: "get"
                 })
                 .then(function(response) {
-                  var userPins = response.data;
-                  $scope.$apply(function (){
-                    $scope.publicUserPins = userPins;
-                    console.log($scope.publicUserPins);
-                    $location.path("/pins/public/" + user);
-                  });
-
+                  PinStorage.tempPins = response.data;
+                  console.log(PinStorage.tempPins);
+                  $location.path("/pins/public/" + user);
                 });
             };
 
