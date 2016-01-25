@@ -1,11 +1,13 @@
-
-MAIN VIEW
-<div ng-controller="PinCtrl" class="container">
-<div class="grid">
-  <div ng-repeat="pin in pins" class="item">
+<div  class="container">
+<div  masonry='{ "transitionDuration" : "0.4s" , "itemSelector" : ".grid-item"}'>
+  <div ng-repeat="pin in pins" class="masonry-tile grid-item">
     <img ng-src='{{pin.url}}' />
-    <p>{{pin.caption}}</p>
-    <a href="/" ng-click="getPublicPins(pin.owner)">View User</a>
+		<div class="optionPanel">
+		<p>{{pin.caption}}</p>
+    <a href="/" ng-click="getPublicPins(pin.owner)"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></a>
+		<a href="/" ng-href="{{pin.url}}"><span class="glyphicon glyphicon-resize-full" aria-hidden="true"></span></a>
+		<a href="/" ng-href="{{pin.url}}"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
+	</div>
   </div>
 </div>
 </div>

@@ -2,7 +2,7 @@
 
 (function() {
 
-  angular.module('clementinePinApp', ['ngRoute', 'PinController'])
+  angular.module('clementinePinApp', ['ngRoute', 'PinController', 'masonry'])
     .config(['$routeProvider',
       function($routeProvider) {
         $routeProvider.

@@ -33,6 +33,7 @@ app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'html');
 app.use('/controllers', express.static(process.cwd() + '/app/controllers'));
 app.use('/public', express.static(process.cwd() + '/public'));
+app.use('/node_modules', express.static(__dirname + '/node_modules'));
 app.use(flash()); // use connect-flash for flash messages stored in session
 
 

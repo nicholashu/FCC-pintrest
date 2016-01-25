@@ -1,26 +1,12 @@
 
 (function() {
     angular
-    .module('PinController', ['clementinePinApp'])
+    .module('PinController', ['clementinePinApp', 'masonry'])
     .service('PinStorage', ['$http', '$location', function($http, $location) {
             var tempPins = [];
 
             this.getPublicPins = function(user) {
               tempPins = [];
-              $http({
-                  url: "/api/public/pins/" + user,
-                  method: "get"
-                })
-                .then(function(response) {
-                 //var userPins = response.data;
-                  tempPins = response.data;
-                  console.log("using Factory");
-                  console.log(tempPins);
-                  $location.path("/pins/public/" + user);
-                });
-            };
-            return function (user) {
-
             };
 
         }])
@@ -31,11 +17,9 @@
             var pinUrl = appUrl + '/api/:id/pins';
             $scope.newPin = {};
             $scope.myPins = [];
-            $scope.publicUserPins = [];
             $scope.pins = [];
             $scope.tab = 0;
             $scope.PinStorage = PinStorage;
-              //$scope.getPublicPins = PinStorage.getPublicPins;
 
             $scope.changeLocation = function(url) {
               $location.path(url);
@@ -72,7 +56,6 @@
 
             loadPins();
 
-
             $scope.addPin = function() {
               if ($scope.newRecord != {}) {
                 $http.post(pinUrl, {
@@ -100,14 +83,12 @@
 
 
             $scope.getPublicPins = function(user) {
-              $scope.publicUserPins = [];
               $http({
                   url: "/api/public/pins/" + user,
                   method: "get"
                 })
                 .then(function(response) {
                   PinStorage.tempPins = response.data;
-                  console.log(PinStorage.tempPins);
                   $location.path("/pins/public/" + user);
                 });
             };

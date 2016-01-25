@@ -8,25 +8,19 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 	<link href="/public/css/main.css" rel="stylesheet" type="text/css">
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+	<script src="https://npmcdn.com/masonry-layout@4.0/dist/masonry.pkgd.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/3.2.0/imagesloaded.pkgd.min.js"></script>
-	<script src="public/masonry.min.js"></script>
-	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
+	<script src="node_modules/jquery/dist/jquery.js"></script>
+	<script src="/node_modules/angular/angular.js"></script>
 	<script src="https://code.angularjs.org/1.4.8/angular-route.min.js"></script>
-	<script type="text/javascript" src="https://code.angularjs.org/1.4.7/angular-resource.min.js"></script>
-	<script src="controllers/app.js"></script>
-	<script src="controllers/pinController.client.js"></script>
-	<script>
-		var $container = $('.grid');
-		$container.imagesLoaded(function() {
-			$container.masonry({
-				itemSelector: '.item',
-				columnWidth: 200
-			});
-		});
-	</script>
+<script src="controllers/app.js"></script>
+<script src="controllers/pinController.client.js"></script>
+<script src="controllers/angular-masonry-directive.js"></script>
 </head>
 <div ng-include="'public/partials/navbar.html'"></div>
+
 <body ng-controller="PinCtrl">
 	<div ng-view></div>
 </body>
+
 </html>

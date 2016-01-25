@@ -15,12 +15,29 @@
 }
 
 /*****MASONRY******/
-
+.grid-item {
+  max-width: 250px;
+  background-color: #DADFE1;
+  border: solid 2px #EEEEEE;
+  border-radius: 2%;
+}
 .grid-item--width2 { width: 400px; }
-.item img {
+.grid-item img {
   max-width: 200px;
 }
 
+.optionPanel {
+  text-align: center;
+  opacity: 0.8;
+  height:50px;
+  background-color: black;
+  color:white;
+}
+
+.optionPanel a {
+  color: white;
+  font-size: 20px;
+}
 .delete {
   width:30px;
   height:30px;
@@ -43,7 +60,7 @@
 
 .newpinbtn {
   position: absolute;
-  bottom:-110px;
+  bottom:-45px;
   right:-8px;
 }
 
@@ -84,8 +101,14 @@ p {
 }
 
 .imgpreview {
-  width: 300px;
+  width: 400px;
   min-height:200px;
+}
+
+.pincontainer img {
+    width: 100%;
+    display: inline;
+    margin-left: 21px;
 }
 /****** Header Styling ******/
 
