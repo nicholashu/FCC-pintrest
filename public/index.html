@@ -15,6 +15,15 @@
 	<script type="text/javascript" src="https://code.angularjs.org/1.4.7/angular-resource.min.js"></script>
 	<script src="controllers/app.js"></script>
 	<script src="controllers/pinController.client.js"></script>
+	<script>
+		var $container = $('.grid');
+		$container.imagesLoaded(function() {
+			$container.masonry({
+				itemSelector: '.item',
+				columnWidth: 200
+			});
+		});
+	</script>
 </head>
 <div ng-include="'public/partials/navbar.html'"></div>
 <body ng-controller="PinCtrl">

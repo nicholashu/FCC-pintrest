@@ -12,7 +12,7 @@
 
 <div class="grid">
   <div ng-repeat="pin in PinStorage.tempPins" class="item">
-    <img src='{{pin.url}}' />
+    <img ng-src='{{pin.url}}' />
     <p>{{pin.caption}}</p>
 		<a href="#">
 			<div class="delete" ng-click="deletePin(pin._id)">
