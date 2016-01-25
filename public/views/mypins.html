@@ -1,7 +1,7 @@
 
 <div class="container">
-<div class="grid">
-	<div ng-repeat="pin in PinStorage.tempPins" class="grid-item">
+<div masonry='{ "transitionDuration" : "0.4s" , "itemSelector" : ".grid-item"}'>
+	<div ng-repeat="pin in PinStorage.tempPins" class="masonry-tile grid-item">
 		<img ng-src='{{pin.url}}' />
 		<div class="optionPanel">
 		<p>{{pin.caption}}</p>
