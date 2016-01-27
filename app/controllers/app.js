@@ -30,6 +30,19 @@
                 return deferred.promise;
             };
         }])
+        .directive('fallbackSrc', function() {
+        	return {
+            restrict: 'A',
+            link: function(scope, element, attrs){
+        			if(_.isEmpty(attrs.ngSrc)){
+        				element.attr('src', attrs.fallbackSrc);
+        			}
+        			element.bind('error', function(){
+        				element.attr('src', attrs.fallbackSrc);
+        			});
+            }
+          };
+        })
       .controller('MainCtrl', ['$scope', '$http','$location',  'UserService', function($scope, $http, $location, UserService) {
 
         $scope.changeLocation = function(url) {
