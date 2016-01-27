@@ -70,6 +70,14 @@
               }
             };
 
+            $scope.isOwner = function (owner){
+              if (owner === $scope.user._id){
+                return true;
+              }
+              else {
+                return false;
+              }
+            };
 
             $scope.deletePin = function(id) {
               $http({
